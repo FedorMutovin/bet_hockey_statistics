@@ -1,0 +1,10 @@
+table
+  caption = "Transfer #{@transfer.id}"
+  tr
+    - @transfer.attribute_names.each do |attr|
+      th
+        = attr
+  tr
+    - @transfer.attribute_names.each do |attr|
+      td
+        = @transfer.send(attr)

@@ -9,5 +9,6 @@ RSpec.describe Bet, type: :model do
   it { is_expected.to validate_presence_of :league }
   it { is_expected.to validate_presence_of :home_team }
   it { is_expected.to validate_presence_of :away_team }
+  it { is_expected.to validate_presence_of :amount }
   it { is_expected.to validate_presence_of :match_date }
 end

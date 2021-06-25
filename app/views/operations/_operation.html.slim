@@ -1,0 +1,7 @@
+tr
+  td
+    = link_to operation.operational_id, polymorphic_path(operation.operational)
+  td
+    = operation.operational_type
+  td
+    = operation.created_at

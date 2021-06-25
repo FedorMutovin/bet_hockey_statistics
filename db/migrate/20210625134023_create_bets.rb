@@ -7,6 +7,7 @@ class CreateBets < ActiveRecord::Migration[6.1]
       t.string :league, null: false
       t.string :home_team, null: false
       t.string :away_team, null: false
+      t.string :amount, null: false
       t.datetime :match_date, null: false
 
       t.timestamps

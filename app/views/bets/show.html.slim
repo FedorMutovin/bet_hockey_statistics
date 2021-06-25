@@ -1,0 +1,10 @@
+table
+  caption = "Bet #{@bet.id}"
+  tr
+    - @bet.attribute_names.each do |attr|
+      th
+        = attr
+  tr
+    - @bet.attribute_names.each do |attr|
+      td
+        = @bet.send(attr)

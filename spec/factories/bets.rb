@@ -7,5 +7,6 @@ FactoryBot.define do
     home_team { 'Seattle Kraken' }
     away_team { 'Winnipeg Jets' }
     match_date { DateTime.current }
+    amount { 100 }
   end
 end
