@@ -1,0 +1,9 @@
+table
+  caption = "#{resource.class.name} #{resource.id}"
+  - resource.attribute_names.each do |attr|
+    tr
+      th
+        = attr
+    tr
+      td
+        = resource.send(attr)

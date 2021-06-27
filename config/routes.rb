@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
   root to: 'accounts#index'
   resources :accounts, only: %i[index show]
-  get 'show_operational/:id', to: 'operations#show_operational', as: :show_operational
-  get 'create_operational', to: 'operations#create_operational'
+  concern :operational do
+    member do
+      get :show
+      post :create
+    end
+  end
+
+  resources :bets, only: %i[show create], concerns: :operational do
+    member do
+      get :odds
+    end
+  end
+  resources :transfers, only: %i[show create], concerns: :operational
 end

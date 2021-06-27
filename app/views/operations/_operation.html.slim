@@ -1,6 +1,6 @@
 tr
   td
-    = link_to operation.id, show_operational_path(operation)
+    = link_to operation.id, polymorphic_path(operation.operational)
   td
     = operation.operational_type
   td
