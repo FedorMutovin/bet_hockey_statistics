@@ -8,15 +8,16 @@ describe 'User can show all of his accounts and go to account by link', "
   let(:accounts) { create_list(:account, 2) }
   let!(:operation) { create(:operation, :with_bet, account: accounts.first) }
 
-  it 'user tries see all accounts and go to one of them' do
-    visit accounts_path
-    puts operation.account
-    accounts.each { |account| expect(page).to have_content account.number }
-    first_account = accounts.first
-    click_on first_account.number
-    expect(page).to have_content first_account.balance
-    expect(page).to have_content first_account.number
-    expect(page).to have_content operation.operational_type
-    expect(page).to have_content operation.operational_id
+  context 'when user tries see all accounts and go to one of them' do
+    it 'user tries see all accounts and go to one of them' do
+      visit accounts_path
+      accounts.each { |account| expect(page).to have_content account.number }
+      first_account = accounts.first
+      click_on first_account.number
+      expect(page).to have_content first_account.balance
+      expect(page).to have_content first_account.number
+      expect(page).to have_content operation.operational_type
+      expect(page).to have_content operation.operational_id
+    end
   end
 end

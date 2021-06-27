@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Bet, type: :model do
-  it { is_expected.to have_one(:operation) }
+  it_behaves_like 'operational'
   it { is_expected.to validate_presence_of :result }
   it { is_expected.to validate_inclusion_of(:result).in_array(%w[win lose return pending]) }
   it { is_expected.to validate_presence_of :odds }

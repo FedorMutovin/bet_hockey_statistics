@@ -1,10 +1,8 @@
 FactoryBot.define do
   factory :transfer do
     amount { '100' }
+    category { 'deposit' }
 
-    trait :deposit do
-      category { 'deposit' }
-    end
     trait :withdrawal do
       category { 'withdrawal' }
     end

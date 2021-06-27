@@ -1,5 +1,6 @@
 class Bet < ApplicationRecord
-  has_one :operation, dependent: :destroy, as: :operational
+  include Operational
+
   validates :result, :odds, :event, :league, :home_team, :away_team, :match_date, :amount, presence: true
   validates :result, inclusion: %w[win lose return pending]
 
