@@ -8,10 +8,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bets, only: %i[show create], concerns: :operational do
-    member do
-      get :odds
-    end
-  end
-  resources :transfers, only: %i[show create], concerns: :operational
+  resources :bets, except: %i[show create index destroy new update edit], concerns: :operational
+  resources :transfers, except: %i[show create index destroy new update edit], concerns: :operational
 end

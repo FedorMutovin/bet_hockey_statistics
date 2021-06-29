@@ -1,9 +1,0 @@
-table
-  caption = "#{@operational.class.name} #{@operational.id}"
-  - @operational.attribute_names.each do |attr|
-    tr
-      th
-        = attr
-    tr
-      td
-        = @operational.send(attr)
