@@ -5,5 +5,6 @@ FactoryBot.define do
   factory :account do
     user_id { create(:user).id }
     number
+    bookmaker_id { create(:bookmaker).id }
   end
 end

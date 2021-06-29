@@ -1,6 +1,7 @@
 class Account < ApplicationRecord
-  belongs_to :user
+  include HasBookmaker
   has_many :operations, dependent: :destroy
-  validates :number, :balance, presence: true
+  belongs_to :user
+  validates :number, :balance, :bookmaker, presence: true
   validates :number, uniqueness: { case_sensitive: false }
 end

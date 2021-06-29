@@ -1,7 +1,8 @@
 class Bet < ApplicationRecord
   include Operational
+  belongs_to :event
 
-  validates :result, :odds, :event, :league, :home_team, :away_team, :match_date, :amount, presence: true
+  validates :result, :amount, presence: true
   validates :result, inclusion: %w[win lose return pending]
 
   scope :win, -> { where(category: 'win') }

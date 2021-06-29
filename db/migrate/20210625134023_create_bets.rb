@@ -1,14 +1,9 @@
 class CreateBets < ActiveRecord::Migration[6.1]
   def change
     create_table :bets do |t|
+      t.references :event, foreign_key: true, index: true, null: false
       t.string :result, null: false
-      t.string :odds, null: false
-      t.string :event, null: false
-      t.string :league, null: false
-      t.string :home_team, null: false
-      t.string :away_team, null: false
       t.string :amount, null: false
-      t.datetime :match_date, null: false
 
       t.timestamps
     end

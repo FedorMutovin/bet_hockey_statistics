@@ -1,12 +1,7 @@
 FactoryBot.define do
   factory :bet do
+    event_id { create(:event).id }
     result { 'win' }
-    odds { '2,34' }
-    event { 'Match Winner' }
-    league { 'NHL' }
-    home_team { 'Seattle Kraken' }
-    away_team { 'Winnipeg Jets' }
-    match_date { DateTime.current }
     amount { 100 }
   end
 end
