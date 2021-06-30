@@ -7,7 +7,6 @@ FactoryBot.define do
     "FL#{n}"
   end
 
-
   factory :team do
     name { generate :team_name }
     abbreviation

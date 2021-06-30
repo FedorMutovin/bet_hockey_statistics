@@ -8,9 +8,9 @@ namespace :teams do
   end
 
   namespace :nhl do
-    desc 'create NHL team from API/v1/team'
+    desc 'create NHL team from API/v1/teams'
     task create: :environment do
-      Team::NHL::CreateService.new.call
+      NHL::Team::CreateService.new('teams').call
     end
   end
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   sequence :year do |n|
-    "2020-2#{n}"
+    "2020200#{n}"
   end
 
   factory :season do
