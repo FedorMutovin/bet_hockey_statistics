@@ -5,9 +5,16 @@ class NHL::API::Client
     @client = setup_client
   end
 
-  def games(params)
+  def games(params = nil)
     @client.get('schedule', params) do |request|
-      # request.headers['Content-Type'] = 'application/json'
+      request.headers['Content-Type'] = 'application/json'
+      request.body.to_json
+    end
+  end
+
+  def teams(params = nil)
+    @client.get('teams', params) do |request|
+      request.headers['Content-Type'] = 'application/json'
       request.body.to_json
     end
   end
