@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe AccountsController, type: :controller do
-  let(:account) { create(:account) }
+RSpec.describe UsersController, type: :controller do
+  let(:user) { create(:user) }
 
   describe 'GET #index' do
-    let(:accounts) { create_list(:account, 2) }
+    let(:users) { create_list(:user, 2) }
 
     before do
       get :index
     end
 
     it 'get all accounts' do
-      expect(assigns(:accounts)).to match_array(accounts)
+      expect(assigns(:users)).to match_array(users)
     end
 
     it 'render index template' do
@@ -21,7 +21,7 @@ RSpec.describe AccountsController, type: :controller do
 
   describe 'GET #show' do
     before do
-      get :show, params: { id: account }
+      get :show, params: { id: user }
     end
 
     it 'render show template' do

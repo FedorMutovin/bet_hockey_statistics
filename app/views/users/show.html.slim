@@ -1,0 +1,21 @@
+p
+  = "User phone #{@user.mobile_phone}"
+p.overall-balance
+  = "Overall balance #{@user.overall_balance}"
+p
+  = render @user.accounts
+.operations
+  table
+    caption Accounts Operations
+    tr
+      th Operational ID
+      th Operational Type
+      th Created At
+      th Account Bookmaker
+      = render @user_operations
+
+.bet_form
+  = render 'bets/form'
+.transfer-message
+.transfer_form
+  = render 'transfers/form'

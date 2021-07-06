@@ -1,0 +1,6 @@
+transfer_errors = document.querySelector('.transfer-message')
+<% if @operational.persisted? %>
+  transfer_errors.innerHTML = 'successful'
+<% else %>
+  transfer_errors.innerHTML = '<%= render 'shared/errors', resource: @operational %>'
+<% end %>

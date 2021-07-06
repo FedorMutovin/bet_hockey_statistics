@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  root to: 'accounts#index'
-  resources :accounts, only: %i[index show]
+  root to: 'users#index'
+  resources :users, only: %i[index show]
+  resources :accounts, only: :show
   concern :operational do
-    member do
-      get :show
-      post :create
-    end
+    member { get :show }
+    collection { post :create }
   end
 
   resources :bets, except: %i[show create index destroy new update edit], concerns: :operational

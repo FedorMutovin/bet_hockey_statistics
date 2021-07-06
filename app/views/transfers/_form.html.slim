@@ -1,0 +1,7 @@
+= form_for Transfer.new, remote: true do |f|
+  = f.label :category, 'Choose type of operation'
+  = f.select :category, transfer_categories
+  = f.label :amount, 'Operation amount'
+  = f.text_field :amount
+  = render 'operations/form', form: f, operation_new: Operation.new
+  = f.submit 'Save'

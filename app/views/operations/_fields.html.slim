@@ -1,0 +1,5 @@
+.nested-fields
+  .field
+    = f.label :account, 'Choose account'
+    = f.collection_select :account_id, @user.accounts, :id, :bookmaker_name
+    = f.hidden_field :user_id, value: @user.id

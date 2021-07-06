@@ -5,4 +5,6 @@ RSpec.describe Transfer, type: :model do
   it { is_expected.to validate_presence_of :category }
   it { is_expected.to validate_inclusion_of(:category).in_array(%w[deposit withdrawal]) }
   it { is_expected.to validate_presence_of :amount }
+  it { is_expected.to allow_value('79000000000').for(:amount) }
+  it { is_expected.not_to allow_value('s9').for(:amount) }
 end
