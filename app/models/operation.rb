@@ -17,13 +17,13 @@ class Operation < ApplicationRecord
   end
 
   def withdraw!
-    account.update(balance: account.balance.to_f - operational.amount.to_f)
+    account.update(balance: account.balance - operational.amount)
   end
 
   def check_balance
     return unless expense_transaction?
 
-    errors[:base] << 'Insufficient funds' if account.balance.to_f < operational.amount.to_f
+    errors[:base] << 'Insufficient funds' if account.balance < operational.amount
   end
 
   def expense_transaction?
