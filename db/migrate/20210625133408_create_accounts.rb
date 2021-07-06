@@ -3,7 +3,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
     create_table :accounts do |t|
       t.references :user, foreign_key: true, index: true, null: false
       t.references :bookmaker, foreign_key: true, index: true, null: false
-      t.string :balance, null: false, default: '0'
+      t.float :balance, null: false, default: '0'
       t.string :number, null: false
       t.timestamps
     end
