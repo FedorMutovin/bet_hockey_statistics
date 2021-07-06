@@ -7,7 +7,9 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.references :away_team, foreign_key: { to_table: :teams }, index: true, null: false
       t.belongs_to :gameable, polymorphic: true, null: false
       t.datetime :date, null: false
-      t.string :score, null: false
+      t.string :link
+      t.string :api_id
+      t.string :score
       t.timestamps
     end
     add_index :games, [:date, :away_team_id, :home_team_id], unique: true, name: "idx_teams_date_uniq"

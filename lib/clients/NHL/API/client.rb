@@ -12,6 +12,10 @@ class NHL::API::Client
     end
   end
 
+  def games(params)
+    get_request('schedule', params)
+  end
+
   private
 
   def get_request(url, params = nil)

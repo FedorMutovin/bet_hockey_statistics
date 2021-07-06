@@ -7,5 +7,7 @@ FactoryBot.define do
     gameable { create(:regular_season) }
     date { DateTime.current }
     score { '3:2' }
+    link { 'lonk' }
+    api_id { 'asd' }
   end
 end

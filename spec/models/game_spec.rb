@@ -7,7 +7,6 @@ RSpec.describe Game, type: :model do
   it { belong_to :home_team }
   it { belong_to :away_team }
   it { is_expected.to validate_presence_of :date }
-  it { is_expected.to validate_presence_of :score }
 
   describe 'validate data uniqness' do
     let!(:game) { create(:game) }

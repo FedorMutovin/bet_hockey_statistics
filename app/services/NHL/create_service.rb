@@ -1,10 +1,10 @@
 class NHL::CreateService
   attr_reader :method, :league_id, :response, :model_keys, :model
 
-  def initialize(method)
+  def initialize(method, params = nil)
     @method = method
     @league_id = League.find_by(name: 'NHL')&.id
-    @response = NHL::API::Client.new.send(method)
+    @response = NHL::API::Client.new.send(method, params)
     @model = method.singularize.capitalize.constantize
     @model_keys = model.attribute_names
   end

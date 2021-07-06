@@ -6,7 +6,7 @@ class NHL::Season::CreateService < NHL::CreateService
 
   def create_seasons!
     filtered_params.each do |params|
-      next unless params['seasonId'][4..7].eql?(CURRENT_YEAR)
+      next unless params['seasonId'][4..7].eql?(CURRENT_YEAR) # поменять на 0..3
 
       Season.find_or_create_by!(year: params['seasonId'], league_id: league_id).with_regular_season(
         params['regularSeasonStartDate'],

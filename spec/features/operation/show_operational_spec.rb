@@ -10,7 +10,9 @@ describe 'User can show operational info', "
   let(:bet) { create(:bet) }
   let(:transfer) { create(:transfer) }
   let!(:operation_with_bet) { create(:operation, :with_bet, account: account, operational: bet, user: user) }
-  let!(:operation_with_transfer) { create(:operation, :with_transfer, account: account, operational: transfer, user: user) }
+  let!(:operation_with_transfer) do
+    create(:operation, :with_transfer, account: account, operational: transfer, user: user)
+  end
 
   context 'when account have operations' do
     it 'show operational fields' do
