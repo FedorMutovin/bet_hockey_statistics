@@ -1,0 +1,12 @@
+.nested-fields
+  .field
+    = f.label :game, 'Choose game'
+    = f.collection_select :game_id, @games, :id, :name_for_bet
+    = f.label :bookmaker, 'Choose bookmaker'
+    = f.collection_select :bookmaker_id, Bookmaker.all, :id, :name
+    = f.label :name, 'Choose event'
+    = f.collection_select :name, Event::EVENT_TYPES, :to_s, :to_s
+    = f.label :odds, 'Choose odds'
+    = f.text_field :odds
+    = f.label :team, 'Choose team'
+    = f.collection_select :team_id, Team.all, :id, :name

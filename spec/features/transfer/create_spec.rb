@@ -12,10 +12,12 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
     it 'successful deposit' do
       visit user_path(user)
-      fill_in 'Operation amount', with: '123'
-      select 'deposit', from: 'transfer[category]'
-      select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
-      click_on 'Save'
+      within '.transfer_form' do
+        fill_in 'Operation amount', with: '123'
+        select 'deposit', from: 'transfer[category]'
+        select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
+        click_on 'Save'
+      end
 
       expect(page).to have_content 'successful'
       visit user_path(user)
@@ -30,10 +32,12 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
     it 'successful withdrawal' do
       visit user_path(user)
-      fill_in 'Operation amount', with: '123'
-      select 'withdrawal', from: 'transfer[category]'
-      select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
-      click_on 'Save'
+      within '.transfer_form' do
+        fill_in 'Operation amount', with: '123'
+        select 'withdrawal', from: 'transfer[category]'
+        select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
+        click_on 'Save'
+      end
 
       expect(page).to have_content 'successful'
       visit user_path(user)
@@ -44,10 +48,12 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
     it 'not successful withdrawl' do
       visit user_path(user)
-      fill_in 'Operation amount', with: '1000'
-      select 'withdrawal', from: 'transfer[category]'
-      select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
-      click_on 'Save'
+      within '.transfer_form' do
+        fill_in 'Operation amount', with: '1000'
+        select 'withdrawal', from: 'transfer[category]'
+        select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
+        click_on 'Save'
+      end
 
       expect(page).to have_content 'Insufficient funds'
       visit user_path(user)

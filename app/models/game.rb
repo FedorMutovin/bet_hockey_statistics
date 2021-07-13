@@ -8,4 +8,8 @@ class Game < ApplicationRecord
 
   validates :date, presence: true
   validates :date, uniqueness: { scope: %i[home_team_id away_team_id], case_sensitive: false }
+
+  def name_for_bet
+    "#{home_team.name} - #{away_team.name} #{date}"
+  end
 end

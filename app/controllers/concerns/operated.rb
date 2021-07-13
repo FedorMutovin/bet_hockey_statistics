@@ -9,6 +9,7 @@ module Operated
 
   def create
     @operational = create_operation!.operational
+    render 'operations/create'
   end
 
   private

@@ -1,0 +1,6 @@
+messages = document.querySelector(".<%=@operational.class.name.downcase%>-message")
+<% if @operational.persisted? %>
+messages.innerHTML = 'successful'
+<% else %>
+messages.innerHTML = '<%= render 'shared/errors', resource: @operational %>'
+<% end %>

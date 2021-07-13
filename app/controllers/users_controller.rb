@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user_operations = user.operations.order(created_at: :desc)
+    @games = Game.all
   end
 
   private

@@ -1,1 +1,0 @@
-Bookmaker.find_or_create_by(name: '1xСтавка', country: 'Russia')

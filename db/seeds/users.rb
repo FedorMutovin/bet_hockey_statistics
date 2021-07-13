@@ -1,1 +1,0 @@
-User.find_or_create_by(mobile_phone: '79823205166')
