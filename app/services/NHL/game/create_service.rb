@@ -18,19 +18,19 @@ class NHL::Game::CreateService < NHL::CreateService
   end
 
   def teams(teams_params)
-    @teams ||= NHL::Team::FindForGameService.new(teams_params).call
+    NHL::Team::FindForGameService.new(teams_params).call
   end
 
   def season(season_params)
-    @season ||= NHL::Season::FindForGameService.new(season_params).call.season
+    @season = NHL::Season::FindForGameService.new(season_params).call.season
   end
 
   def date(date_params)
-    date_params.to_datetime + MSK_TIMEZONE
+    @date = date_params.to_datetime + MSK_TIMEZONE
   end
 
-  def type(game_type_params)
-    game_type_params.eql?('P') ? @season.regular_season : @season.playoff
+  def type(game_date)
+    game_date <= regular_season_end_date ? @season.regular_season : @season.playoff
   end
 
   def create_params(params)
@@ -41,10 +41,14 @@ class NHL::Game::CreateService < NHL::CreateService
       date: date(params['gameDate']),
       away_team_id: teams(params['teams']).away_id,
       home_team_id: teams(params['teams']).home_id,
-      gameable: type(params['gameType']) }
+      gameable: type(@date) }
   end
 
   def params
     @params ||= JSON.parse(response.body)['dates'].map { |date| date['games'] }.flatten
+  end
+
+  def regular_season_end_date
+    @season.regular_season.end_date.to_datetime
   end
 end
