@@ -6,4 +6,8 @@ class Account < ApplicationRecord
   validates :number, uniqueness: { case_sensitive: false }
 
   delegate :name, to: :bookmaker, prefix: true
+
+  def balance_history
+    Account::BalanceHistoryService.call(operations).history
+  end
 end

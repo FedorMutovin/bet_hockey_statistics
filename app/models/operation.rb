@@ -6,6 +6,10 @@ class Operation < ApplicationRecord
   after_create :change_account_balance!
   validate :check_balance
 
+  def expense_transaction?
+    operational_type.eql?('Bet') || operational.withdrawal?
+  end
+
   private
 
   def change_account_balance!
@@ -24,9 +28,5 @@ class Operation < ApplicationRecord
     return unless expense_transaction?
 
     errors[:base] << 'Insufficient funds' if account.balance < operational.amount
-  end
-
-  def expense_transaction?
-    operational_type.eql?('Bet') || operational.withdrawal?
   end
 end
