@@ -13,15 +13,7 @@ class Operation < ApplicationRecord
   private
 
   def change_account_balance!
-    expense_transaction? ? withdraw! : deposit!
-  end
-
-  def deposit!
-    account.update(balance: account.balance.to_f + operational.final_amount.to_f)
-  end
-
-  def withdraw!
-    account.update(balance: account.balance - operational.amount)
+    Account::ChangeBalanceService.new(account, operational).call
   end
 
   def check_balance
