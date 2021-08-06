@@ -9,7 +9,7 @@ class Transfer < ApplicationRecord
 
   accepts_nested_attributes_for :operation, reject_if: :all_blank
 
-  DEFAULT_BET_RESULTS.each do |result|
+  DEFAULT_TRANSFER_RESULTS.each do |result|
     scope result.to_sym, -> { where(result: result) }
     define_method("#{result}?".to_sym) do
       self.result.eql?(result)
