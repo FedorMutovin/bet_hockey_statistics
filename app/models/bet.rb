@@ -4,16 +4,16 @@ class Bet < ApplicationRecord
 
   before_update :change_final_amount_value!, if: :result_changed?
 
-  DEFAULT_RESULTS = %w[win lose return pending].freeze
+  DEFAULT_BET_RESULTS = %w[win lose return pending].freeze
 
   accepts_nested_attributes_for :operation, reject_if: :all_blank
   accepts_nested_attributes_for :event, reject_if: :all_blank
 
   validates :result, :amount, :final_amount, presence: true
-  validates :result, inclusion: DEFAULT_RESULTS
+  validates :result, inclusion: DEFAULT_BET_RESULTS
   validates :amount, format: { with: /\A\d+/, message: 'only digits' }
 
-  DEFAULT_RESULTS.each do |result|
+  DEFAULT_BET_RESULTS.each do |result|
     scope result.to_sym, -> { where(result: result) }
     define_method("#{result}?".to_sym) do
       self.result.eql?(result)
