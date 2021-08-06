@@ -3,7 +3,7 @@ class Operation < ApplicationRecord
   belongs_to :user
   belongs_to :operational, polymorphic: true, touch: true
 
-  after_save :change_account_balance!
+  after_create :change_account_balance!
   validate :check_balance
 
   def expense_transaction?
@@ -13,8 +13,6 @@ class Operation < ApplicationRecord
   private
 
   def change_account_balance!
-    return if operational.respond_to?(:lose?) && operational.lose?
-
     expense_transaction? ? withdraw! : deposit!
   end
 

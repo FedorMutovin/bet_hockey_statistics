@@ -31,8 +31,9 @@ class Bet < ApplicationRecord
   private
 
   def change_final_amount_value!
-    return if final_amount.positive?
+    return unless win? && final_amount <= 0
 
     self.final_amount = final_amount + (amount * event.odds) if win?
+    operation.send(:change_account_balance!)
   end
 end
