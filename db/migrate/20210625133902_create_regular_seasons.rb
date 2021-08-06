@@ -7,5 +7,6 @@ class CreateRegularSeasons < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :regular_seasons, [:season_id, :start_date, :end_date], unique: true, name: "idx_regular_seasons_date_uniq"
   end
 end

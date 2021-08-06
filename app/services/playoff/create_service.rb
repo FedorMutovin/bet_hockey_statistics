@@ -1,4 +1,4 @@
-class NHL::Playoff::CreateService
+class Playoff::CreateService
   attr_reader :season_id
 
   def initialize(season_id)

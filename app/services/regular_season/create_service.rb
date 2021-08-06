@@ -1,4 +1,4 @@
-class NHL::RegularSeason::CreateService
+class RegularSeason::CreateService
   attr_reader :season_id, :start_date, :end_date
 
   def initialize(season_id, start_date, end_date)
