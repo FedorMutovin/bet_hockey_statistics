@@ -13,6 +13,6 @@ RSpec.describe Season, type: :model do
   describe 'validate year uniqness' do
     let!(:season) { create(:season) }
 
-    it { is_expected.to validate_uniqueness_of(:year).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:year).scoped_to(%i[league_id]).case_insensitive }
   end
 end

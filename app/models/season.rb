@@ -2,7 +2,7 @@ class Season < ApplicationRecord
   include HasLeague
   has_one :regular_season, dependent: :destroy
   has_one :playoff, dependent: :destroy
-  validates :year, presence: true, uniqueness: { case_sensitive: false },
+  validates :year, presence: true, uniqueness: { scope: :league_id, case_sensitive: false },
                    format: { with: /\A\d{8}/, message: 'yyyyyyyy format' }
   after_create :set_playoff
 

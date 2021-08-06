@@ -7,6 +7,6 @@ class CreateSeasons < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :seasons, :year, unique: true
+    add_index :seasons, [:year, :league_id], unique: true
   end
 end
