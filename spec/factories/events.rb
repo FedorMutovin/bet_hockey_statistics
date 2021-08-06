@@ -3,7 +3,7 @@ FactoryBot.define do
     game_id { create(:game).id }
     bookmaker_id { create(:bookmaker).id }
     team_id { create(:team).id }
-    odds { '2.3' }
+    odds { '2' }
     name { 'match_winner' }
   end
 end

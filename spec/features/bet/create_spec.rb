@@ -33,7 +33,7 @@ describe 'User can do bet on event', "
         expect(page).to have_content '90'
       end
       within '.operations' do
-        expect(page).to have_content 'Bet'
+        expect(page).to have_content 'pending'
       end
     end
   end
@@ -58,7 +58,7 @@ describe 'User can do bet on event', "
         expect(page).to have_content '100'
       end
       within '.operations' do
-        expect(page).not_to have_content 'Bet'
+        expect(page).not_to have_content 'pending'
       end
     end
   end

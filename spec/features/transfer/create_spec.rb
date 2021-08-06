@@ -14,7 +14,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
       visit user_path(user)
       within '.transfer_form' do
         fill_in 'Operation amount', with: '123'
-        select 'deposit', from: 'transfer[category]'
+        select 'deposit', from: 'transfer[result]'
         select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
         click_on 'Save'
       end
@@ -34,7 +34,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
       visit user_path(user)
       within '.transfer_form' do
         fill_in 'Operation amount', with: '123'
-        select 'withdrawal', from: 'transfer[category]'
+        select 'withdrawal', from: 'transfer[result]'
         select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
         click_on 'Save'
       end
@@ -50,7 +50,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
       visit user_path(user)
       within '.transfer_form' do
         fill_in 'Operation amount', with: '1000'
-        select 'withdrawal', from: 'transfer[category]'
+        select 'withdrawal', from: 'transfer[result]'
         select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
         click_on 'Save'
       end

@@ -7,21 +7,13 @@ class Operation < ApplicationRecord
   validate :check_balance
 
   def expense_transaction?
-    operational_type.eql?('Bet') || operational.withdrawal?
+    operational.withdrawal?
   end
 
   private
 
   def change_account_balance!
-    expense_transaction? ? withdraw! : deposit!
-  end
-
-  def deposit!
-    account.update(balance: account.balance.to_f + operational.amount.to_f)
-  end
-
-  def withdraw!
-    account.update(balance: account.balance - operational.amount)
+    Account::ChangeBalanceService.new(account, operational).call
   end
 
   def check_balance

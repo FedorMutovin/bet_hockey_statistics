@@ -1,20 +1,22 @@
 class Transfer < ApplicationRecord
   include Operational
 
-  validates :category, :amount, presence: true
-  validates :category, inclusion: %w[deposit withdrawal]
+  DEFAULT_TRANSFER_RESULTS = %w[deposit withdrawal].freeze
+
+  validates :result, :amount, presence: true
+  validates :result, inclusion: DEFAULT_TRANSFER_RESULTS
   validates :amount, format: { with: /\A\d+/, message: 'only digits' }
 
   accepts_nested_attributes_for :operation, reject_if: :all_blank
 
-  scope :deposit, -> { where(category: 'deposit') }
-  scope :withdrawal, -> { where(category: 'withdrawal') }
-
-  def withdrawal?
-    category.eql?('withdrawal')
+  DEFAULT_TRANSFER_RESULTS.each do |result|
+    scope result.to_sym, -> { where(result: result) }
+    define_method("#{result}?".to_sym) do
+      self.result.eql?(result)
+    end
   end
 
-  def deposit?
-    category.eql?('deposit')
+  def final_amount
+    amount
   end
 end
