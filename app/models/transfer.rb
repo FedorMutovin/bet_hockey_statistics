@@ -17,4 +17,8 @@ class Transfer < ApplicationRecord
   def deposit?
     category.eql?('deposit')
   end
+
+  def final_amount
+    amount
+  end
 end

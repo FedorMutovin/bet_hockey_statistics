@@ -3,21 +3,23 @@ class Operation < ApplicationRecord
   belongs_to :user
   belongs_to :operational, polymorphic: true, touch: true
 
-  after_create :change_account_balance!
+  after_save :change_account_balance!
   validate :check_balance
 
   def expense_transaction?
-    operational_type.eql?('Bet') || operational.withdrawal?
+    operational.withdrawal?
   end
 
   private
 
   def change_account_balance!
+    return if operational.respond_to?(:lose?) && operational.lose?
+
     expense_transaction? ? withdraw! : deposit!
   end
 
   def deposit!
-    account.update(balance: account.balance.to_f + operational.amount.to_f)
+    account.update(balance: account.balance.to_f + operational.final_amount.to_f)
   end
 
   def withdraw!
