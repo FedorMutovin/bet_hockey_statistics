@@ -13,14 +13,10 @@ class Season < ApplicationRecord
   private
 
   def set_regular_season(start_date, end_date)
-    league_name::RegularSeason::CreateService.new(id, start_date, end_date).call
+    RegularSeason::CreateService.new(id, start_date, end_date).call
   end
 
   def set_playoff
-    league_name::Playoff::CreateService.new(id).call
-  end
-
-  def league_name
-    league.name.constantize
+    Playoff::CreateService.new(id).call
   end
 end

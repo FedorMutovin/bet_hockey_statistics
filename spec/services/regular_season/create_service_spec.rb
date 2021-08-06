@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe NHL::RegularSeason::CreateService do
+RSpec.describe RegularSeason::CreateService do
   subject(:regular_season_create_service) do
     described_class.new(create(:season).id,
                         Date.current - 3.months,
