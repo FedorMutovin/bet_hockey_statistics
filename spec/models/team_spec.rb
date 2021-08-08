@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Team, type: :model do
   it_behaves_like 'has_league'
   it { is_expected.to validate_presence_of :name }
-  it { is_expected.to validate_presence_of :abbreviation }
   it { is_expected.to allow_value('AAA').for(:abbreviation) }
   it { is_expected.to have_many(:games).dependent(:destroy) }
   it { is_expected.to have_many(:events).dependent(:destroy) }

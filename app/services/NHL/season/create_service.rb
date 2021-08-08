@@ -13,8 +13,6 @@ class NHL::Season::CreateService < NHL::CreateService
         params['regularSeasonEndDate']
       )
     end
-  rescue ActiveRecord::RecordInvalid => e
-    puts e.message
   end
 
   def filtered_params

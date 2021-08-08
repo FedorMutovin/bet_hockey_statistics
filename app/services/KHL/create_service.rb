@@ -31,17 +31,20 @@ class KHL::CreateService
 
   PATHS = {
     'seasons' => 'https://www.khl.ru/calendar/',
-    'games' => 'https://www.khl.ru/calendar/'
+    'games' => 'https://www.khl.ru/calendar/',
+    'teams' => 'https://www.khl.ru/clubs/'
   }.freeze
 
   DATES_CSS = '.b-final_cup_date b'.freeze
+  TEAM_CITIES_CSS = '.e-club_sity'.freeze
+  TEAM_NAMES_CSS = '.e-club_name'.freeze
 
-  def filtered_games_array
-    game_dates_array.select { |element| element.scan(/\d/).present? }&.reject(&:blank?)
+  def filtered_games
+    games.select { |element| element.scan(/\d/).present? }&.reject(&:blank?)
   end
 
-  def game_dates_array
-    @game_dates_array ||= response.css(DATES_CSS)&.text&.split(', ')&.map do |element|
+  def games
+    response.css(DATES_CSS)&.text&.split(', ')&.map do |element|
       element.split('|').last
     end
   end

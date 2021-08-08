@@ -6,8 +6,6 @@ class NHL::Game::CreateService < NHL::CreateService
 
   def create_games!
     filtered_params.each { |params| Game.find_or_create_by!(create_params(params)) }
-  rescue ActiveRecord::RecordInvalid => e
-    puts e.message
   end
 
   def filtered_params
@@ -45,7 +43,7 @@ class NHL::Game::CreateService < NHL::CreateService
   end
 
   def params
-    @params ||= JSON.parse(response.body)['dates'].map { |date| date['games'] }.flatten
+    JSON.parse(response.body)['dates'].map { |date| date['games'] }.flatten
   end
 
   def regular_season_end_date
