@@ -15,13 +15,13 @@ class NHL::CreateService
   end
 
   def filtered_params
-    @filtered_params ||= params&.map do |hash|
+    params&.map do |hash|
       hash.select { |k, _v| model_keys.include?(k.underscore) }
           .merge(league_id: league_id)
     end
   end
 
   def params
-    @params ||= JSON.parse(response.body)[method]
+    JSON.parse(response.body)[method]
   end
 end

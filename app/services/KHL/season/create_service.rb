@@ -7,11 +7,11 @@ class KHL::Season::CreateService < KHL::CreateService
   end
 
   def start_date
-    @start_date ||= build_date(filtered_games_array.first.split(' '))
+    @start_date ||= build_date(filtered_games.first.split(' '))
   end
 
   def end_date
-    @end_date = build_date(filtered_games_array.last.split(' '))
+    @end_date = build_date(filtered_games.last.split(' '))
   end
 
   def year
