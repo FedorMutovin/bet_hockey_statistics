@@ -10,6 +10,6 @@ class Game < ApplicationRecord
   validates :date, uniqueness: { scope: %i[home_team_id away_team_id], case_sensitive: false }
 
   def name_for_bet
-    "#{home_team.name} - #{away_team.name} #{date}"
+    "#{home_team.name} - #{away_team.name} #{date.to_formatted_s(:long)}"
   end
 end

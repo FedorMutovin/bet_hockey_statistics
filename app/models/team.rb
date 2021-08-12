@@ -9,10 +9,6 @@ class Team < ApplicationRecord
                            if: -> { abbreviation.present? }
   before_validation :upcase_abbreviation
 
-  League.pluck(:id, :name).to_h.each do |id, name|
-    scope name.downcase.to_sym, -> { where(league_id: id) }
-  end
-
   private
 
   def upcase_abbreviation

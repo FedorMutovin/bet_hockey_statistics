@@ -19,6 +19,6 @@ class Operation < ApplicationRecord
   def check_balance
     return unless expense_transaction?
 
-    errors[:base] << 'Insufficient funds' if account.balance < operational.amount
+    errors.add(:base, :insufficient_funds, message: 'Insufficient funds') if account.balance < operational.amount
   end
 end

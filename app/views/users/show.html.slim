@@ -14,7 +14,8 @@ p
       th Account Bookmaker
       = render @user_operations
 
-= render 'bets/new'
+= render 'bets/search'
+.new-bet
 = render 'transfers/new'
 
 = line_chart Account.last.balance_history
