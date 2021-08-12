@@ -1,4 +1,3 @@
-h3 New Bet
 = form_for Bet.new, remote: true do |f|
   = render 'events/form', form: f, event_new: Event.new
   = f.label :amount, 'Operation amount'

@@ -17,10 +17,6 @@ describe 'User can show all of users and go to profile', "
       users.each { |user| expect(page).to have_content user.mobile_phone }
       first_user = users.first
       click_on first_user.mobile_phone
-      accounts.each do |account|
-        expect(page).to have_content account.balance
-        expect(page).to have_content account.number
-      end
       expect(page).to have_content operation.operational.result
       expect(page).to have_content operation.operational_id
     end

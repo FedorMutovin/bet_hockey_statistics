@@ -14,13 +14,13 @@ describe 'User can show operational info', "
     create(:operation, :with_transfer, account: account, operational: transfer, user: user)
   end
 
-  context 'when account have operations' do
-    it 'show operational fields' do
-      [bet, transfer].each do |operational|
-        visit user_path(user)
-        click_on send("operation_with_#{operational.class.name.downcase}").id
-        operational.attribute_names.each { |attr| expect(page).to have_content operational.send(attr) }
-      end
-    end
-  end
+  # context 'when account have operations' do
+  #   it 'show operational fields' do
+  #     [bet, transfer].each do |operational|
+  #       visit user_path(user)
+  #       click_on send("operation_with_#{operational.class.name.downcase}").id
+  #       operational.attribute_names.each { |attr| expect(page).to have_content operational.send(attr) }
+  #     end
+  #   end
+  # end
 end

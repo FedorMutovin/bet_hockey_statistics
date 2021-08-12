@@ -5,6 +5,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.references :season, foreign_key: true, index: true, null: false
       t.references :home_team, foreign_key: { to_table: :teams }, index: true, null: false
       t.references :away_team, foreign_key: { to_table: :teams }, index: true, null: false
+      t.references :winner, foreign_key: { to_table: :teams }, index: true
       t.belongs_to :gameable, polymorphic: true, null: false
       t.datetime :date, null: false
       t.string :link

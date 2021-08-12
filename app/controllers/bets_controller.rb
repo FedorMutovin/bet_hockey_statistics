@@ -21,7 +21,7 @@ class BetsController < ApplicationController
 
   def bet_params
     params.require(:bet).permit(:amount,
-                                event_attributes: %i[game_id name odds team_id bookmaker_id],
+                                event_attributes: %i[game_id eventable_id eventable_type odds team_id bookmaker_id],
                                 operation_attributes: %i[account_id user_id])
   end
 end

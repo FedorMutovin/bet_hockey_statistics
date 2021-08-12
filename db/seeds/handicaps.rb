@@ -1,0 +1,1 @@
+(-3.5..3.5).step(0.5).each {|value| Handicap.find_or_create_by(value: value)}

@@ -1,0 +1,1 @@
+[true, false].each {|condition| MatchWinner.find_or_create_by(with_extra_time: condition)}

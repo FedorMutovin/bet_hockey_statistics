@@ -6,7 +6,7 @@ RSpec.describe Bet, type: :model do
   it { is_expected.to validate_presence_of :result }
   it { is_expected.to validate_inclusion_of(:result).in_array(%w[win lose return pending]) }
   it { is_expected.to validate_presence_of :amount }
-  it { is_expected.to validate_presence_of :final_amount }
+  it { is_expected.to validate_presence_of :winning_amount }
   it { is_expected.to allow_value(100.5).for(:amount) }
 
   describe 'it not change account balance after change bet params except result' do

@@ -7,7 +7,7 @@ describe 'User can do bet on event', "
 " do
   let(:user) { create(:user) }
 
-  %w[khl nhl].each do |league|
+  League::AVAILABLE_LEAGUES_NAMES.map(&:downcase).each do |league|
     let!("#{league}_league".to_sym) { create(:league, league.to_sym) }
     let("#{league}_home_team".to_sym) { create(:team, league.to_sym, league: send("#{league}_league".to_sym)) }
     let("#{league}_away_team".to_sym) { create(:team, league.to_sym, league: send("#{league}_league".to_sym)) }
@@ -21,6 +21,7 @@ describe 'User can do bet on event', "
              away_team: send("#{league}_away_team".to_sym),
              gameable: send("#{league}_regular_season".to_sym))
     end
+    let!(:total) { create(:total) }
   end
 
   context 'when user tries bet', js: true do
@@ -35,18 +36,16 @@ describe 'User can do bet on event', "
       within '.new-bet' do
         fill_in 'Operation amount', with: '10'
         select nhl_game.name_for_bet, from: 'bet[event_attributes][game_id]'
-        select 'match_winner', from: 'bet[event_attributes][name]'
+        select 'Total', from: 'bet[event_attributes][eventable_type]'
+        select '< 5.0', from: 'bet[event_attributes][eventable_id]'
         select account.bookmaker.name, from: 'bet[operation_attributes][account_id]'
         fill_in 'Choose odds', with: '1.7'
-        select nhl_home_team.name, from: 'bet[event_attributes][team_id]'
         click_on 'Save'
       end
 
       expect(page).to have_content 'successful'
       visit user_path(user)
-      within '.overall-balance' do
-        expect(page).to have_content '90'
-      end
+      expect(page).to have_content '90'
       within '.operations' do
         expect(page).to have_content 'pending'
       end
@@ -55,6 +54,7 @@ describe 'User can do bet on event', "
 
   context 'when user tries bet without balance', js: true do
     let!(:account) { create(:account, user: user, balance: 100) }
+    let!(:match_winner) { create(:match_winner) }
 
     it 'not successful bet' do
       visit user_path(user)
@@ -65,7 +65,8 @@ describe 'User can do bet on event', "
       within '.new-bet' do
         fill_in 'Operation amount', with: '101'
         select khl_game.name_for_bet, from: 'bet[event_attributes][game_id]'
-        select 'match_winner', from: 'bet[event_attributes][name]'
+        select 'MatchWinner', from: 'bet[event_attributes][eventable_type]'
+        select 'with_extra_time: true', from: 'bet[event_attributes][eventable_id]'
         select account.bookmaker.name, from: 'bet[operation_attributes][account_id]'
         fill_in 'Choose odds', with: '1.7'
         select khl_home_team.name, from: 'bet[event_attributes][team_id]'
@@ -73,9 +74,7 @@ describe 'User can do bet on event', "
       end
       expect(page).to have_content 'Insufficient funds'
       visit user_path(user)
-      within '.overall-balance' do
-        expect(page).to have_content '100'
-      end
+      expect(page).to have_content '100'
       within '.operations' do
         expect(page).not_to have_content 'pending'
       end
