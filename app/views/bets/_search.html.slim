@@ -1,0 +1,4 @@
+= form_tag search_data_path, class: 'search-form', method: :get, remote: true do
+  = select_tag :league_name, options_from_collection_for_select(League.all, 'name', 'name')
+  = hidden_field_tag :user_id, @user.id
+  = button_tag 'choose league for bet', class: 'btn btn-outline-success'

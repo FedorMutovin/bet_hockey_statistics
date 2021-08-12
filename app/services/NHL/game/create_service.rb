@@ -15,8 +15,8 @@ class NHL::Game::CreateService < NHL::CreateService
     end
   end
 
-  def teams(teams_params)
-    NHL::Team::FindForGameService.new(teams_params).call
+  def team_id(team_name)
+    NHL::Team::FindForGameService.new(team_name).call
   end
 
   def season(season_params)
@@ -37,8 +37,8 @@ class NHL::Game::CreateService < NHL::CreateService
       api_id: params['gamePk'],
       link: params['link'],
       date: date(params['gameDate']),
-      away_team_id: teams(params['teams']).away_id,
-      home_team_id: teams(params['teams']).home_id,
+      away_team_id: team_id(params['teams']['away']['team']['name']).id,
+      home_team_id: team_id(params['teams']['home']['team']['name']).id,
       gameable: type(@date) }
   end
 

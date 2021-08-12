@@ -36,14 +36,12 @@ class KHL::CreateService
   }.freeze
 
   DATES_CSS = '.b-final_cup_date b'.freeze
-  TEAM_CITIES_CSS = '.e-club_sity'.freeze
-  TEAM_NAMES_CSS = '.e-club_name'.freeze
 
-  def filtered_games
-    games.select { |element| element.scan(/\d/).present? }&.reject(&:blank?)
+  def filtered_games_dates
+    games_dates.select { |element| element.scan(/\d/).present? }&.reject(&:blank?)
   end
 
-  def games
+  def games_dates
     response.css(DATES_CSS)&.text&.split(', ')&.map do |element|
       element.split('|').last
     end

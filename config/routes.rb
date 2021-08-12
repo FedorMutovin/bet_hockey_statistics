@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   resources :bets, except: %i[show create index destroy new update edit], concerns: :operational
   resources :transfers, except: %i[show create index destroy new update edit], concerns: :operational
+
+  get 'search_data', to: 'bets#search_data'
 end

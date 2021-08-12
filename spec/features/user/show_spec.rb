@@ -21,7 +21,7 @@ describe 'User can show all of users and go to profile', "
         expect(page).to have_content account.balance
         expect(page).to have_content account.number
       end
-      expect(page).to have_content operation.operational_type
+      expect(page).to have_content operation.operational.result
       expect(page).to have_content operation.operational_id
     end
   end

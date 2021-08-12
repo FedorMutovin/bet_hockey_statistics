@@ -1,4 +1,7 @@
 class KHL::Team::CreateService < KHL::CreateService
+  TEAM_CITIES_CSS = '.e-club_sity'.freeze
+  TEAM_NAMES_CSS = '.e-club_name'.freeze
+
   private
 
   def create_teams!

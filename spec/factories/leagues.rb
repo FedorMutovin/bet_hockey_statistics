@@ -1,5 +1,11 @@
 FactoryBot.define do
   factory :league do
-    name { 'NHL' }
+    trait :khl do
+      name { 'KHL' }
+    end
+
+    trait :nhl do
+      name { 'NHL' }
+    end
   end
 end
