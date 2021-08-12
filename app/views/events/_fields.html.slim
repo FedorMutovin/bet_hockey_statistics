@@ -4,9 +4,12 @@
     = f.collection_select :game_id, @games, :id, :name_for_bet
     = f.label :bookmaker, 'Choose bookmaker'
     = f.collection_select :bookmaker_id, Bookmaker.all, :id, :name
-    = f.label :name, 'Choose event'
-    = f.collection_select :name, Event::EVENT_TYPES, :to_s, :to_s
+    = f.label :eventable_type, 'Choose event type'
+    = f.collection_select :eventable_type, Event::AVAILABLE_EVENTS, :to_s, :to_s
+    = f.label :eventable, 'Choose event'
+    = f.grouped_collection_select :eventable_id,  Event::AVAILABLE_EVENTS.map(&:constantize), :all, :model_name, :id, :event
     = f.label :odds, 'Choose odds'
     = f.text_field :odds
-    = f.label :team, 'Choose team'
-    = f.collection_select :team_id, @teams, :id, :name
+    .bet-team
+      = f.label :team, 'Choose team'
+      = f.collection_select :team_id, @teams, :id, :name, prompt: true

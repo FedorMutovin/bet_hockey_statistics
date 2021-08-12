@@ -5,8 +5,7 @@ RSpec.describe Team, type: :model do
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to allow_value('AAA').for(:abbreviation) }
   it { is_expected.to have_many(:games).dependent(:destroy) }
-  it { is_expected.to have_many(:events).dependent(:destroy) }
-  it { is_expected.to have_many(:games).dependent(:destroy).with_foreign_key('away_team_id') }
+  it { is_expected.to have_many(:games).dependent(:destroy).with_foreign_key('winner_id') }
 
   describe 'validate abbreviation uniqness' do
     let!(:team) { create(:team, :nhl) }

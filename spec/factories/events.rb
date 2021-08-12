@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :event do
-    game_id { create(:game, :khl).id }
+    game { create(:game, :khl) }
     bookmaker_id { create(:bookmaker).id }
     team_id { create(:team, :khl).id }
     odds { '2' }
-    name { 'match_winner' }
+    eventable { create(:total) }
   end
 end

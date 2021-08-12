@@ -3,10 +3,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @user = User.last
   end
 
   def show
-    @user_operations = user.operations.order(created_at: :desc)
+    @user_operations = user.operations.includes([:operational, :account]).order(created_at: :desc)
   end
 
   private

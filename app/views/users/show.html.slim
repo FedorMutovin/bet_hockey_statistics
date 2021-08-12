@@ -1,21 +1,18 @@
-p
-  = "User phone #{@user.mobile_phone}"
-p.overall-balance
-  = "Overall balance #{@user.overall_balance}"
-p
-  = render @user.accounts
-.operations
-  table
-    caption Accounts Operations
-    tr
-      th Operational ID
-      th Operational Type
-      th Created At
-      th Account Bookmaker
-      = render @user_operations
-
-= render 'bets/search'
-.new-bet
-= render 'transfers/new'
-
-= line_chart Account.last.balance_history
+.row
+  .col-6
+    .operations
+      table.table-striped
+        caption Accounts Operations
+        tr
+          th Operational ID
+          th Operational Type
+          th Created At
+          th Account Bookmaker
+          = render @user_operations
+  .col-6
+    = render 'transfers/new'
+  .col-6
+    = line_chart Account.last.balance_history
+  .col-6
+    = render 'bets/search'
+    .new-bet

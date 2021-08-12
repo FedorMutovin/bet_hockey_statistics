@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Bet::ChangeFinalAmountService do
+RSpec.describe Bet::ChangeWinningAmountService do
   let(:user) { create(:user) }
   let(:account) { create(:account) }
   let(:win_bet) { create(:bet, result: 'win') }
@@ -17,16 +17,16 @@ RSpec.describe Bet::ChangeFinalAmountService do
       account_balance = account.balance
       described_class.new(win_bet).call
       account.reload
-      expect(win_bet.final_amount).to eq(win_bet.amount * win_bet.event.odds)
-      expect(account.balance).to eq(account_balance + win_bet.final_amount)
+      expect(win_bet.winning_amount).to eq(win_bet.amount * win_bet.event.odds)
+      expect(account.balance).to eq(account_balance + win_bet.winning_amount)
     end
 
     it 'update final amount bet like return' do
       account_balance = account.balance
       described_class.new(return_bet).call
       account.reload
-      expect(return_bet.final_amount).to eq(return_bet.amount)
-      expect(account.balance).to eq(account_balance + return_bet.final_amount)
+      expect(return_bet.winning_amount).to eq(return_bet.amount)
+      expect(account.balance).to eq(account_balance + return_bet.winning_amount)
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe Bet::ChangeFinalAmountService do
       account_balance = account.balance
       described_class.new(lose_bet).call
       account.reload
-      expect(lose_bet.final_amount).to eq(0)
+      expect(lose_bet.winning_amount).to eq(0)
       expect(account.balance).to eq(account_balance)
     end
 
@@ -43,7 +43,7 @@ RSpec.describe Bet::ChangeFinalAmountService do
       account_balance = account.balance
       described_class.new(pending_bet).call
       account.reload
-      expect(pending_bet.final_amount).to eq(0)
+      expect(pending_bet.winning_amount).to eq(0)
       expect(account.balance).to eq(account_balance)
     end
   end

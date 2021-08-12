@@ -21,9 +21,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
       expect(page).to have_content 'successful'
       visit user_path(user)
-      within '.overall-balance' do
-        expect(page).to have_content '123'
-      end
+      expect(page).to have_content '123'
     end
   end
 
@@ -41,9 +39,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
       expect(page).to have_content 'successful'
       visit user_path(user)
-      within '.overall-balance' do
-        expect(page).to have_content '0'
-      end
+      expect(page).to have_content '0'
     end
 
     it 'not successful withdrawl' do
@@ -57,9 +53,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
       expect(page).to have_content 'Insufficient funds'
       visit user_path(user)
-      within '.overall-balance' do
-        expect(page).to have_content '123'
-      end
+      expect(page).to have_content '123'
     end
   end
 end
