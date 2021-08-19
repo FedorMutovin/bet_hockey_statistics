@@ -12,14 +12,9 @@ class KHL::Game::CreateService < KHL::CreateService
         away_team_id: team_id(away_teams[index]),
         date: filter_date(build_date(date.split(' ')), index),
         season_id: season.id,
-        gameable: type(@date)
+        gameable: type(@date),
+        link: links[index]
       )
-    end
-  end
-
-  %w[home_teams away_teams].each do |method_name|
-    define_method(method_name.to_sym) do
-      response.call("#{self.class.name}::#{method_name.upcase}_CSS".constantize).map(&:text)
     end
   end
 
@@ -30,6 +25,12 @@ class KHL::Game::CreateService < KHL::CreateService
   def away_teams
     @away_teams ||= response.css('.b-details').css('.m-club').css('.m-rightward').css('.b-details_txt')
                             .css('.e-club_name').map(&:text)
+  end
+
+  def links
+    @links = response.css('.b-title-option div div ul li a')
+                     .select { |link| link.values.first.include?('preview') }
+                     .map { |link| link.values.first.gsub('preview', 'protocol') }
   end
 
   def games_times
