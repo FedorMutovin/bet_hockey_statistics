@@ -39,5 +39,6 @@ module BetHockeyStatistics
     config.autoload_paths << "#{Rails.root}/app/factories"
     config.autoload_paths << "#{Rails.root}/lib/clients"
     config.autoload_paths << "#{Rails.root}/lib/web_scrapers"
+    config.autoload_paths += "#{Rails.root}/app/channels"
   end
 end
