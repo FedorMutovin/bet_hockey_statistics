@@ -6,15 +6,7 @@ class KHL::Game::CreateService < KHL::CreateService
 
   def create_games!
     filtered_games_dates.each_with_index do |date, index|
-      Game.find_or_create_by!(
-        league_id: league_id,
-        home_team_id: team_id(home_teams[index]),
-        away_team_id: team_id(away_teams[index]),
-        date: filter_date(build_date(date.split(' ')), index),
-        season_id: season.id,
-        gameable: type(@date),
-        link: links[index]
-      )
+      create_game(date, index)
     end
   end
 
@@ -55,5 +47,17 @@ class KHL::Game::CreateService < KHL::CreateService
 
   def regular_season_end_date
     @season.regular_season.end_date.to_datetime
+  end
+
+  def create_game(date, index)
+    Game.find_or_create_by!(
+      league_id: league_id,
+      home_team_id: team_id(home_teams[index]),
+      away_team_id: team_id(away_teams[index]),
+      date: filter_date(build_date(date.split(' ')), index),
+      season_id: season.id,
+      gameable: type(@date),
+      link: links[index]
+    )
   end
 end

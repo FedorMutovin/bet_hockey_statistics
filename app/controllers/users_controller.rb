@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_operations = user.operations.includes([:operational, :account]).order(created_at: :desc)
+    @user_operations = user.operations.includes(%i[operational account]).order(created_at: :desc)
   end
 
   private
