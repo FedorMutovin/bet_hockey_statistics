@@ -11,6 +11,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.string :link
       t.string :api_id
       t.string :score
+      t.boolean :extra_time, null: false, default: false
       t.timestamps
     end
     add_index :games, [:date, :away_team_id, :home_team_id], unique: true, name: "idx_teams_date_uniq"

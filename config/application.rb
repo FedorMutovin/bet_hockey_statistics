@@ -36,6 +36,7 @@ module BetHockeyStatistics
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << "#{Rails.root}/app/factories"
     config.autoload_paths << "#{Rails.root}/lib/clients"
     config.autoload_paths << "#{Rails.root}/lib/web_scrapers"
   end
