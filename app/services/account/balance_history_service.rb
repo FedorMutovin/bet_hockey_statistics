@@ -30,8 +30,12 @@ class Account::BalanceHistoryService
     if operation.expense_transaction?
       balance -= operation.operational.amount
     else
-      balance += operation.operational.amount
+      balance += operation.operational_type.eql?('Transfer') ? operation.operational.amount : bet_win(operation)
     end
     balance
+  end
+
+  def bet_win(operation)
+    operation.operational.final_amount - operation.operational.amount
   end
 end

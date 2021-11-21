@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user_operations = user.operations.includes(%i[operational account]).order(created_at: :desc)
+    @account = @user.accounts.first
   end
 
   private
