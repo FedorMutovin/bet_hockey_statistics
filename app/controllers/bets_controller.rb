@@ -12,11 +12,11 @@ class BetsController < ApplicationController
   end
 
   def teams
-    @teams ||= Team.send(params[:league_name].downcase)
+    @teams ||= Team.all
   end
 
   def games
-    @games ||= Game.send(params[:league_name].downcase).includes(%i[home_team away_team])
+    @games ||= Game.includes(%i[home_team away_team])
   end
 
   def bet_params

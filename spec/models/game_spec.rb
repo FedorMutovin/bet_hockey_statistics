@@ -11,7 +11,7 @@ RSpec.describe Game, type: :model do
   it { is_expected.to validate_presence_of :date }
 
   describe 'validate data uniqness' do
-    let!(:game) { create(:game, :nhl) }
+    let!(:game) { create(:game) }
 
     it { is_expected.to validate_uniqueness_of(:date).scoped_to(%i[home_team_id away_team_id]).case_insensitive }
   end

@@ -8,13 +8,13 @@ RSpec.describe Team, type: :model do
   it { is_expected.to have_many(:games).dependent(:destroy).with_foreign_key('winner_id') }
 
   describe 'validate abbreviation uniqness' do
-    let!(:team) { create(:team, :nhl) }
+    let!(:team) { create(:team) }
 
     it { is_expected.to validate_uniqueness_of(:abbreviation).scoped_to(:name).case_insensitive }
   end
 
   describe '.upcase_abbreviation' do
-    let!(:team) { create(:team, :nhl, abbreviation: 'aaa') }
+    let!(:team) { create(:team, abbreviation: 'aaa') }
 
     it 'upcase abbreviation' do
       expect(team.abbreviation).to eq 'AAA'

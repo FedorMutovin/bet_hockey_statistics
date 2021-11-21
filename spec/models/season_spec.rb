@@ -11,7 +11,7 @@ RSpec.describe Season, type: :model do
   it { is_expected.not_to allow_value('220-222').for(:year) }
 
   describe 'validate year uniqness' do
-    let!(:season) { create(:season, :nhl) }
+    let!(:season) { create(:season) }
 
     it { is_expected.to validate_uniqueness_of(:year).scoped_to(%i[league_id]).case_insensitive }
   end

@@ -5,13 +5,6 @@ FactoryBot.define do
 
   factory :season do
     year
-
-    trait :khl do
-      league { create(:league, :khl) }
-    end
-
-    trait :nhl do
-      league { create(:league, :nhl) }
-    end
+    league { create(:league) }
   end
 end

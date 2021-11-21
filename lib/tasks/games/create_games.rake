@@ -4,7 +4,6 @@ namespace :games do
     task create:
            %i[
              games:nhl:create
-             games:khl:create
            ]
   end
 
@@ -16,10 +15,10 @@ namespace :games do
     end
   end
 
-  namespace :khl do
-    desc 'create KHL games by web_scrapper from /calendar'
-    task create: :environment do
-      KHL::Game::CreateService.new('games').call
-    end
-  end
+  # namespace :khl do
+  #   desc 'create KHL games by web_scrapper from /calendar'
+  #   task create: :environment do
+  #     KHL::Game::CreateService.new('games').call
+  #   end
+  # end
 end

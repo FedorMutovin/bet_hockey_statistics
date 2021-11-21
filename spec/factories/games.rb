@@ -1,25 +1,20 @@
 FactoryBot.define do
+  sequence(:link, 'a') do |n|
+    "link#{n}"
+  end
+
+  sequence(:api_id, 'a') do |n|
+    "id#{n}"
+  end
+
   factory :game do
-    link { 'lonk' }
-    api_id { 'asd' }
+    link { generate :link }
+    api_id { generate :api_id }
     date { DateTime.current }
-
-    trait :khl do
-      league_id { create(:league, :khl).id }
-      season { create(:season, :khl) }
-      gameable { create(:regular_season, season: season) }
-      home_team_id { create(:team, :khl).id }
-      away_team_id { create(:team, :khl).id }
-    end
-
-    trait :nhl do
-      league_id { create(:league, :nhl).id }
-      season { create(:season, :nhl) }
-      gameable { create(:regular_season, season: season) }
-      link { 'lonk' }
-      api_id { 'asd' }
-      home_team_id { create(:team, :nhl).id }
-      away_team_id { create(:team, :nhl).id }
-    end
+    league_id { create(:league).id }
+    season { create(:season) }
+    gameable { create(:regular_season, season: season) }
+    home_team_id { create(:team).id }
+    away_team_id { create(:team).id }
   end
 end
