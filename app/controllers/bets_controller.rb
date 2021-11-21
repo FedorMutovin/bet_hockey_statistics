@@ -16,7 +16,7 @@ class BetsController < ApplicationController
   end
 
   def games
-    @games ||= Game.includes(%i[home_team away_team])
+    @games ||= Game.includes(%i[home_team away_team]).coming.order(date: :asc)
   end
 
   def bet_params
