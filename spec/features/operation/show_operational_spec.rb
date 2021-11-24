@@ -16,10 +16,11 @@ describe 'User can show operational info', "
 
   context 'when account have operations' do
     it 'show operational fields' do
+      sign_in(user)
       [bet, transfer].each do |operational|
-        visit user_path(user)
         click_on send("operation_with_#{operational.class.name.downcase}").id
         operational.attribute_names.each { |attr| expect(page).to have_content operational.send(attr) }
+        visit user_path(user)
       end
     end
   end

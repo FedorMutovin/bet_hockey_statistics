@@ -1,22 +1,20 @@
 require 'rails_helper'
 
-describe 'User can show all of users and go to profile', "
- In order to have to be able to see all users and go to profile
+describe 'User can view his profile', "
+ In order to have to be able to see my profile
  As an user
- I'd like to be able to show all of users and go to profile
+ I'd like to be able to view all my profile
 " do
-  let(:users) { create_list(:user, 2) }
-  let(:accounts) { create_list(:account, 2, user: users.first) }
+  let(:user) { create(:user) }
+  let(:account) { create(:account, user: user) }
   let(:bet) { create(:bet) }
-  let!(:operation) { create(:operation, operational: bet, account: accounts.first, user: users.first) }
+  let!(:operation) { create(:operation, operational: bet, account: account, user: user) }
 
-  context 'when user tries see all users and go to profile' do
-    it 'user tries see all users and go to profile' do
-      puts operation
-      visit users_path
-      users.each { |user| expect(page).to have_content user.mobile_phone }
-      first_user = users.first
-      click_on first_user.mobile_phone
+  context 'when user tries log in' do
+    it 'log in user and show profile' do
+      visit root_path
+      sign_in(user)
+      expect(page).to have_content user.email
       expect(page).to have_content operation.operational.result
       expect(page).to have_content operation.operational_id
     end

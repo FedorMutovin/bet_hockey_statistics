@@ -3,6 +3,7 @@ require 'rails_helper'
 shared_examples 'operated' do
   describe 'GET #show' do
     before do
+      login(user)
       get :show, params: { id: operational.id }
     end
 

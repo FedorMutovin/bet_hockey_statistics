@@ -26,7 +26,7 @@ describe 'User can do bet on event', "
     let!(:account) { create(:account, user: user, balance: 100) }
 
     it 'successful bet' do
-      visit user_path(user)
+      sign_in(user)
       within '.search-form' do
         select league.name, from: 'league_name'
         click_on 'choose league for bet'
@@ -55,7 +55,7 @@ describe 'User can do bet on event', "
     let!(:match_winner) { create(:match_winner) }
 
     it 'not successful bet' do
-      visit user_path(user)
+      sign_in(user)
       within '.search-form' do
         select league.name, from: 'league_name'
         click_on 'choose league for bet'

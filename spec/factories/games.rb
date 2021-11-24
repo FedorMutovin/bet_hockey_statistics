@@ -10,7 +10,7 @@ FactoryBot.define do
   factory :game do
     link { generate :link }
     api_id { generate :api_id }
-    date { DateTime.current }
+    date { DateTime.current + 2.days }
     league_id { create(:league).id }
     season { create(:season) }
     gameable { create(:regular_season, season: season) }

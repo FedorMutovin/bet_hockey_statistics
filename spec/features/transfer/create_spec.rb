@@ -11,7 +11,7 @@ describe 'User can do transfer(deposit ot withdraw)', "
     let!(:account) { create(:account, user: user, balance: 0) }
 
     it 'successful deposit' do
-      visit user_path(user)
+      sign_in(user)
       within '.transfer_form' do
         fill_in 'Operation amount', with: '123'
         select 'deposit', from: 'transfer[result]'
@@ -28,8 +28,9 @@ describe 'User can do transfer(deposit ot withdraw)', "
   context 'when user tries withdrawal', js: true do
     let!(:account) { create(:account, user: user, balance: 123) }
 
+    before { sign_in(user) }
+
     it 'successful withdrawal' do
-      visit user_path(user)
       within '.transfer_form' do
         fill_in 'Operation amount', with: '123'
         select 'withdrawal', from: 'transfer[result]'
@@ -43,7 +44,6 @@ describe 'User can do transfer(deposit ot withdraw)', "
     end
 
     it 'not successful withdrawl' do
-      visit user_path(user)
       within '.transfer_form' do
         fill_in 'Operation amount', with: '1000'
         select 'withdrawal', from: 'transfer[result]'
