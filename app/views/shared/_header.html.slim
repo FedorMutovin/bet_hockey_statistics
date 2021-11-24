@@ -1,5 +1,14 @@
-nav.navbar.navbar-light.bg-light
-  h1 Bet Hockey Statistics
-  span.navbar-text
-    = "User phone: #{@user.mobile_phone}"
-    = render @user.accounts
+nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.bs-container
+  .container
+    = link_to "Bet Hockey Statistics", root_path, class: "navbar-brand"
+    ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        span.navbar-text
+          = "Account: #{current_user.email}"
+        li.nav-item
+          = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"
+      - else
+        li.nav-item
+          = link_to "Sign in", new_user_session_path, class: "nav-link"
+        li.nav-item
+          = link_to "Sign up", new_user_registration_path, class: "nav-link"

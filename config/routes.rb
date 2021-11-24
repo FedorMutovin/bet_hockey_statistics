@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
-  resources :users, only: %i[index show]
+  devise_for :users
+  root to: 'users#show'
+  resources :users, only: %i[show]
   resources :accounts, only: :show
   concern :operational do
     member { get :show }
