@@ -10,5 +10,7 @@ import "channels"
 import '../js/bootstrap_js_files.js'
 import "chartkick/chart.js"
 
+require.context('../images', true)
+
 Rails.start()
 Turbolinks.start()
