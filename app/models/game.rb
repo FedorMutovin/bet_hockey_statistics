@@ -12,6 +12,7 @@ class Game < ApplicationRecord
   validates :date, uniqueness: { scope: %i[home_team_id away_team_id], case_sensitive: false }
 
   scope :coming, -> { where('date >= ? and score is null', DateTime.current) }
+  scope :past, -> { where('date < ? and score is null', DateTime.current) }
 
   TEAMS_TYPES = %w[home_team away_team].freeze
 

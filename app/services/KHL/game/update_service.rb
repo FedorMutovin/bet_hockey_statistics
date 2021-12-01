@@ -6,6 +6,10 @@ class KHL::Game::UpdateService
     @games = Game.past
   end
 
+  def self.call
+    new.call
+  end
+
   def call
     update_service!
   end

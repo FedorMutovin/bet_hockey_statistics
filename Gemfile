@@ -30,7 +30,9 @@ gem 'chartkick'
 
 gem 'devise'
 
-gem 'letter_opener'
+gem 'watir'
+
+gem 'webdrivers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,6 +55,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'bullet'
+  gem 'letter_opener'
   gem 'spring'
 end
 
@@ -64,7 +67,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,16 +1,16 @@
 namespace :games do
   namespace :all do
-    desc 'create games'
-    task create:
+    desc 'update games'
+    task update:
            %i[
-             games:nhl:create
+             games:nhl:update
            ]
   end
 
   namespace :nhl do
-    desc 'create NHL team from API/v1/teams'
+    desc 'update games info from moneypuck'
     task update: :environment do
-      NHL::Game::CreateService.new('games').call
+      NHL::Game::UpdateService.call
     end
   end
 end

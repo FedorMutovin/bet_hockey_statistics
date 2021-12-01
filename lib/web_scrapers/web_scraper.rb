@@ -1,5 +1,6 @@
 class WebScraper
   require 'open-uri'
+  require 'watir'
 
   attr_accessor :url
 
@@ -14,6 +15,8 @@ class WebScraper
   private
 
   def scrape
-    Nokogiri::HTML(URI.parse(url).open)
+    browser = Watir::Browser.new :chrome, switches: %w[--headless]
+    browser.goto url
+    Nokogiri::HTML.parse(browser.html)
   end
 end

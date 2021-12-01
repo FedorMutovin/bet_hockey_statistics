@@ -14,11 +14,4 @@ namespace :games do
       NHL::Game::CreateService.new('games', game_gap).call
     end
   end
-
-  # namespace :khl do
-  #   desc 'create KHL games by web_scrapper from /calendar'
-  #   task create: :environment do
-  #     KHL::Game::CreateService.new('games').call
-  #   end
-  # end
 end
