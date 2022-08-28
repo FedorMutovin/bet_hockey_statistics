@@ -13,8 +13,17 @@ RSpec.describe Bet::ChangeWinningAmountService do
   let!(:pending_operation) { create(:operation, account: account, user: user, operational: pending_bet) }
 
   context 'when deposit operation' do
-    it 'update final amount bet like win' do
+    it 'update final amount bet like win with tax' do
       account_balance = account.balance
+      described_class.new(win_bet).call
+      account.reload
+      expect(win_bet.winning_amount).to eq(win_bet.amount * win_bet.tax * win_bet.event.odds)
+      expect(account.balance).to eq(account_balance + win_bet.winning_amount)
+    end
+
+    it 'update final amount bet like win without tax' do
+      account_balance = account.balance
+      win_bet.tax = 0.0
       described_class.new(win_bet).call
       account.reload
       expect(win_bet.winning_amount).to eq(win_bet.amount * win_bet.event.odds)

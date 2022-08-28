@@ -33,6 +33,7 @@ describe 'User can do bet on event', "
       end
       within '.new-bet' do
         fill_in 'Operation amount', with: '10'
+        fill_in 'Operation tax', with: '0.88'
         select game.name_for_bet, from: 'bet[event_attributes][game_id]'
         select 'Total', from: 'bet[event_attributes][eventable_type]'
         select '< 5.0', from: 'bet[event_attributes][eventable_id]'

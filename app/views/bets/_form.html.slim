@@ -2,5 +2,7 @@
   = render 'events/form', form: f, event_new: Event.new
   = f.label :amount, 'Operation amount'
   = f.text_field :amount
+  = f.label :tax, 'Operation tax'
+  = f.text_field :tax
   = render 'operations/form', form: f, operation_new: Operation.new
   = f.submit 'Save'
