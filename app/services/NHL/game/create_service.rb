@@ -1,6 +1,6 @@
 class NHL::Game::CreateService < NHL::CreateService
   GAME_PARAMS = %w[gamePk link season gameDate teams].freeze
-  MSK_TIMEZONE = 3.hours
+  WARSAW_TIMEZONE = 2.hours
 
   private
 
@@ -24,7 +24,7 @@ class NHL::Game::CreateService < NHL::CreateService
   end
 
   def date(date_params)
-    @date = date_params.to_datetime + MSK_TIMEZONE
+    @date = date_params.to_datetime + WARSAW_TIMEZONE
   end
 
   def type(game_date)
