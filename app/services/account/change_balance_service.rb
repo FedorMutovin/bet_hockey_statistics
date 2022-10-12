@@ -14,7 +14,11 @@ class Account::ChangeBalanceService
   private
 
   def change_balance!
-    operational.withdrawal? ? withdraw! : deposit!
+    Account.transaction do
+      account.lock!
+      account.reload
+      operational.withdrawal? ? withdraw! : deposit!
+    end
   end
 
   def deposit!
