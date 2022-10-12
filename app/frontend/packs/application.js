@@ -9,6 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "chartkick/chart.js"
 import "bootstrap"
+import "js/accounts.js"
+import "js/bets.js"
 require("@popperjs/core")
 
 require.context('../images', true)

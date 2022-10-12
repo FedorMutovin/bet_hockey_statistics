@@ -20,7 +20,7 @@ describe 'User can show operational info', "
       [bet, transfer].each do |operational|
         click_on send("operation_with_#{operational.class.name.downcase}").id
         operational.attribute_names.each { |attr| expect(page).to have_content operational.send(attr) }
-        visit user_path(user)
+        visit account_path(account)
       end
     end
   end

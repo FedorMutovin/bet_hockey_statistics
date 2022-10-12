@@ -1,3 +1,6 @@
+= "Bookmaker: #{@account.bookmaker.name}"
+= "Balance: #{@account.balance}"
+
 .row
   .col-6
     .operations
@@ -8,11 +11,11 @@
           th Operational Type
           th Created At
           th Account Bookmaker
-          = render @user_operations[0..4]
+          = render @operations
   .col-6
     = render 'transfers/new'
   .col-6
     = line_chart @account.balance_history
   .col-6
-    = render 'bets/search'
-    .new-bet
+    - unless @games.blank?
+      = render 'bets/new'

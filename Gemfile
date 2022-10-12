@@ -30,9 +30,9 @@ gem 'chartkick'
 
 gem 'devise'
 
-gem 'watir', '~> 7.0'
+gem 'watir', require: false
 
-gem 'webdrivers', '~> 5.0'
+gem 'webdrivers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

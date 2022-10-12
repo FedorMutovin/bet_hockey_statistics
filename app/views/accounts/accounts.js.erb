@@ -1,0 +1,12 @@
+let new_account_form_button = document.querySelector('.new_account_button');
+let new_account_form = document.querySelector('.new_account');
+new_account_form_button.addEventListener('click', (e) => {
+    console.log('h')
+    if(new_account_form.style.display === 'none') {
+        console.log('b')
+        new_account_form.style.display = ''
+    } else {
+        console.log('y')
+        new_account_form.style.display = 'none'
+    }
+});

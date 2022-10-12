@@ -1,6 +1,4 @@
 class Event < ApplicationRecord
-  include HasBookmaker
-
   AVAILABLE_EVENTS = %w[MatchWinner Handicap IndividualTotal Total].freeze
 
   has_many :bets, dependent: :destroy

@@ -1,22 +1,10 @@
 class BetsController < ApplicationController
-  before_action :user, only: :search_data
-  before_action :teams, :games, only: :search_data, if: -> { params[:league_name].present? }
   include Operated
-
-  def search_data; end
 
   private
 
   def user
     @user ||= User.find(params[:user_id])
-  end
-
-  def teams
-    @teams ||= Team.all
-  end
-
-  def games
-    @games ||= Game.includes(%i[home_team away_team]).coming.order(date: :asc)
   end
 
   def bet_params

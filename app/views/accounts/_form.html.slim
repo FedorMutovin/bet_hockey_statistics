@@ -1,0 +1,6 @@
+.new_account_form
+  p New account
+  = form_for Account.new, remote: true  do |f|
+    = f.label :bookmaker, 'Choose bookmaker'
+    = f.collection_select :bookmaker_id, Bookmaker.all, :id, :name
+    = f.submit 'Save'

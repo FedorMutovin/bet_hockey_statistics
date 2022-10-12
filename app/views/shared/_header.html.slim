@@ -4,9 +4,9 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.bs-container
     ul.navbar-nav.ml-auto
       - if user_signed_in?
         span.navbar-text
-          = "Account: #{current_user.email}"
+          = "User: #{current_user.email} "
         span.navbar-text
-          = "Balance: #{current_user.overall_balance}"
+          = "Bank: #{current_user.overall_balance}"
         li.nav-item
           = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"
       - else

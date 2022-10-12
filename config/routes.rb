@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'users#show'
-  resources :users, only: %i[show]
-  resources :accounts, only: :show
+  root to: 'users#profile'
+  resources :users, only: %i[profile]
+  resources :accounts, only: %i[show create destroy]
   concern :operational do
     member { get :show }
     collection { post :create }
