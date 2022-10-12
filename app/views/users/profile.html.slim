@@ -1,0 +1,19 @@
+.row
+  .col-3
+    .accounts
+      .p Accounts
+      = render @accounts
+      = link_to 'Create New Account', '#', class: 'btn btn-outline-secondary btn-sm new_account_button'
+      = render 'accounts/form'
+  .col-6
+    .operations
+      table.table-striped
+        caption Accounts Operations
+        tr
+          th Operational ID
+          th Operational Type
+          th Created At
+          th Account Bookmaker
+          = render @user_operations
+  .col-6
+    = line_chart current_user.accounts_balance_history

@@ -4,7 +4,6 @@ FactoryBot.define do
   end
   factory :account do
     user_id { create(:user).id }
-    number
     bookmaker_id { create(:bookmaker).id }
     balance { '1000' }
   end

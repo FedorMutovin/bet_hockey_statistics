@@ -27,22 +27,18 @@ describe 'User can do bet on event', "
 
     it 'successful bet' do
       sign_in(user)
-      within '.search-form' do
-        select league.name, from: 'league_name'
-        click_on 'choose league for bet'
-      end
-      within '.new-bet' do
+      click_on account.bookmaker.name
+      within '.new_bet' do
         fill_in 'Operation amount', with: '10'
         select game.name_for_bet, from: 'bet[event_attributes][game_id]'
         select 'Total', from: 'bet[event_attributes][eventable_type]'
         select '< 5.0', from: 'bet[event_attributes][eventable_id]'
-        select account.bookmaker.name, from: 'bet[operation_attributes][account_id]'
         fill_in 'Choose odds', with: '1.7'
         click_on 'Save'
       end
 
       expect(page).to have_content 'successful'
-      visit user_path(user)
+      visit account_path(account)
       expect(page).to have_content '90'
       within '.operations' do
         expect(page).to have_content 'pending'
@@ -56,22 +52,18 @@ describe 'User can do bet on event', "
 
     it 'not successful bet' do
       sign_in(user)
-      within '.search-form' do
-        select league.name, from: 'league_name'
-        click_on 'choose league for bet'
-      end
-      within '.new-bet' do
+      click_on account.bookmaker.name
+      within '.new_bet' do
         fill_in 'Operation amount', with: '101'
         select game.name_for_bet, from: 'bet[event_attributes][game_id]'
         select 'MatchWinner', from: 'bet[event_attributes][eventable_type]'
         select 'with_extra_time: true', from: 'bet[event_attributes][eventable_id]'
-        select account.bookmaker.name, from: 'bet[operation_attributes][account_id]'
         fill_in 'Choose odds', with: '1.7'
         select home_team.name, from: 'bet[event_attributes][team_id]'
         click_on 'Save'
       end
       expect(page).to have_content 'Insufficient funds'
-      visit user_path(user)
+      visit account_path(user)
       expect(page).to have_content '100'
       within '.operations' do
         expect(page).not_to have_content 'pending'

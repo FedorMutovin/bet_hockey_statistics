@@ -1,2 +1,6 @@
-= "Bookmaker: #{account.bookmaker.name}"
-= "Balance: #{account.balance}"
+.container-sm
+  .row
+    .col-md
+      = link_to account.bookmaker.name, account_path(account)
+    .col-sm
+      = link_to 'Delete', account_path(account), method: :delete, data: {confirm: 'Delete account?'}

@@ -15,7 +15,7 @@ class WebScraper
   private
 
   def scrape
-    browser = Watir::Browser.new :chrome, switches: %w[--headless]
+    browser = Watir::Browser.new :chrome, headless: true
     browser.goto url
     Nokogiri::HTML.parse(browser.html)
   end

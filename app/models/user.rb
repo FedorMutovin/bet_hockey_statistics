@@ -12,4 +12,12 @@ class User < ApplicationRecord
   def overall_balance
     accounts.pluck(:balance).map(&:to_i).sum
   end
+
+  def accounts_balance_history
+    history = {}
+    accounts.each do |account|
+      history.merge!(Account::BalanceHistoryService.call(account.operations).history)
+    end
+    history.sort.to_h
+  end
 end

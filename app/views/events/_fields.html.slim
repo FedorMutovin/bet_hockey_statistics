@@ -2,8 +2,6 @@
   .field
     = f.label :game, 'Choose game'
     = f.collection_select :game_id, @games, :id, :name_for_bet
-    = f.label :bookmaker, 'Choose bookmaker'
-    = f.collection_select :bookmaker_id, Bookmaker.all, :id, :name
     = f.label :eventable_type, 'Choose event type'
     = f.collection_select :eventable_type, Event::AVAILABLE_EVENTS, :to_s, :to_s
     = f.label :eventable, 'Choose event'

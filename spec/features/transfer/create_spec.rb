@@ -12,15 +12,15 @@ describe 'User can do transfer(deposit ot withdraw)', "
 
     it 'successful deposit' do
       sign_in(user)
+      click_on account.bookmaker.name
       within '.transfer_form' do
         fill_in 'Operation amount', with: '123'
         select 'deposit', from: 'transfer[result]'
-        select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
         click_on 'Save'
       end
 
       expect(page).to have_content 'successful'
-      visit user_path(user)
+      visit account_path(account)
       expect(page).to have_content '123'
     end
   end
@@ -31,28 +31,28 @@ describe 'User can do transfer(deposit ot withdraw)', "
     before { sign_in(user) }
 
     it 'successful withdrawal' do
+      click_on account.bookmaker.name
       within '.transfer_form' do
         fill_in 'Operation amount', with: '123'
         select 'withdrawal', from: 'transfer[result]'
-        select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
         click_on 'Save'
       end
 
       expect(page).to have_content 'successful'
-      visit user_path(user)
+      visit account_path(account)
       expect(page).to have_content '0'
     end
 
     it 'not successful withdrawl' do
+      click_on account.bookmaker.name
       within '.transfer_form' do
         fill_in 'Operation amount', with: '1000'
         select 'withdrawal', from: 'transfer[result]'
-        select account.bookmaker.name, from: 'transfer[operation_attributes][account_id]'
         click_on 'Save'
       end
 
       expect(page).to have_content 'Insufficient funds'
-      visit user_path(user)
+      visit account_path(account)
       expect(page).to have_content '123'
     end
   end
