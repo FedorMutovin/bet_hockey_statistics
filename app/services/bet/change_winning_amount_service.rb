@@ -25,10 +25,14 @@ class Bet::ChangeWinningAmountService
   end
 
   def calculate_win_amount
-    bet.winning_amount += (bet.amount * bet.event.odds)
+    bet.winning_amount += (bet.amount * bet.event.odds * tax)
   end
 
   def calculate_return_amount
     bet.winning_amount += bet.amount
+  end
+
+  def tax
+    (1 - bet.operation.account.bookmaker.country_tax_percentage)
   end
 end
