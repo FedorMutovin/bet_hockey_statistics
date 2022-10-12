@@ -20,13 +20,8 @@ class Bet::ChangeWinningAmountService
   end
 
   def change_winning_amount!
-    Bet.transaction do
-      bet.lock!
-      bet.reload
-      send CALCULATION_STRATEGY[bet.result]
-      bet.operation.send(:change_account_balance!)
-      bet.save
-    end
+    send CALCULATION_STRATEGY[bet.result]
+    bet.operation.send(:change_account_balance!)
   end
 
   def calculate_win_amount
