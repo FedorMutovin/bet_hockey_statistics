@@ -4,6 +4,7 @@ FactoryBot.define do
   end
   factory :bookmaker do
     name { generate :bookmaker_name }
-    country { 'Russia' }
+    country { 'Poland' }
+    country_tax_percentage { 0.12 }
   end
 end

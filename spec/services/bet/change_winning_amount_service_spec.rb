@@ -17,7 +17,8 @@ RSpec.describe Bet::ChangeWinningAmountService do
       account_balance = account.balance
       described_class.new(win_bet).call
       account.reload
-      expect(win_bet.winning_amount).to eq(win_bet.amount * win_bet.event.odds)
+      expect(win_bet.winning_amount)
+        .to eq(win_bet.amount * win_bet.event.odds * (1 - win_bet.operation.account.bookmaker.country_tax_percentage))
       expect(account.balance).to eq(account_balance + win_bet.winning_amount)
     end
 
