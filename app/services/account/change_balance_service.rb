@@ -18,6 +18,7 @@ class Account::ChangeBalanceService
       account.lock!
       account.reload
       operational.withdrawal? ? withdraw! : deposit!
+      account.save
     end
   end
 

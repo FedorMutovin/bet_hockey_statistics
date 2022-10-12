@@ -25,6 +25,7 @@ class Bet::ChangeWinningAmountService
       bet.reload
       send CALCULATION_STRATEGY[bet.result]
       bet.operation.send(:change_account_balance!)
+      bet.save
     end
   end
 
