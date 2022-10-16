@@ -14,7 +14,7 @@ describe 'User can show operational info', "
     create(:operation, :with_transfer, account: account, operational: transfer, user: user)
   end
 
-  context 'when account have operations' do
+  context 'when account have operations', js: true do
     it 'show operational fields' do
       sign_in(user)
       [bet, transfer].each do |operational|

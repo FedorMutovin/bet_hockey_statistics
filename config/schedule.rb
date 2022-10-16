@@ -13,12 +13,12 @@
 #   rake "some:great:rake:task"
 # end
 
-every 1.days, at: "6:00 AM" do
-  rake "games:all:create"
+every 1.day, at: '6:00 AM' do
+  rake 'games:all:create'
 end
 
-every 1.days, at: "11:00 AM" do
-  rake "games:all:update"
+every 1.day, at: '11:00 AM' do
+  rake 'games:all:update'
 end
 
 # Learn more: http://github.com/javan/whenever

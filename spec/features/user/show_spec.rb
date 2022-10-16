@@ -14,7 +14,7 @@ describe 'User can view his profile', "
   let!(:other_operation) { create(:operation, operational: transfer, account: other_account, user: user) }
   let(:current_balance) { (account.balance + other_account.balance - bet.amount + transfer.amount).to_i }
 
-  context 'when user tries log in' do
+  context 'when user tries log in', js: true do
     it 'log in user and show profile' do
       visit root_path
       sign_in(user)
