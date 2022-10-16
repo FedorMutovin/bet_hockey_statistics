@@ -20,7 +20,7 @@ class Account::BalanceHistoryService
   private
 
   def check_history
-    operations.each do |operation|
+    operations.includes(:operational).each do |operation|
       self.current_balance = balance_calculation(current_balance, operation)
       history[operation.created_at.to_date] = current_balance.to_i
     end
