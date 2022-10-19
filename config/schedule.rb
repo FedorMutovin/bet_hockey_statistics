@@ -17,7 +17,7 @@ every 1.day, at: '6:00 AM' do
   rake 'games:all:create'
 end
 
-every 1.day, at: '11:00 AM' do
+every 1.day, at: '8:00 AM' do
   rake 'games:all:update'
 end
 
